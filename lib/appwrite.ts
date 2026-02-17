@@ -1,7 +1,8 @@
 //configuration file for connecting the backend(appwrite)
 //credentials
-import { Client } from "react-native-appwrite";
+import { Account, Client } from "react-native-appwrite";
 const client = new Client()
-  .setEndpoint(process.env.EXPO_PUBLIC_APPWRITE_ENDPOINT)
-  .setProject(process.env.EXPO_PUBLIC_APPWRITE_PROJECT_ID)
-  .setPlatform(process.env.EXPO_PUBLIC_APPWRITE_PLATFORM);
+  .setEndpoint(process.env.EXPO_PUBLIC_APPWRITE_ENDPOINT!)
+  .setProject(process.env.EXPO_PUBLIC_APPWRITE_PROJECT_ID!)
+  .setPlatform(process.env.EXPO_PUBLIC_APPWRITE_PLATFORM!);
+const account = new Account(client);

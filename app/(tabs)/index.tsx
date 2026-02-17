@@ -5,7 +5,8 @@ export default function Index() {
     <View
       style={styles.view}
     >
-      <Link href="/Login">login</Link>
+    <Link href="/(tabs)/login">login</Link>
+
     </View>
   );
 }
