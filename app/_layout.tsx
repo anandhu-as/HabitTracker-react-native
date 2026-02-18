@@ -1,10 +1,29 @@
 import { AuthProvider, useAuth } from "@/lib/auth-context";
-import { Stack, useRootNavigationState, useRouter, useSegments } from "expo-router";
+import {
+  Stack,
+  useRootNavigationState,
+  useRouter,
+  useSegments,
+} from "expo-router";
 import React, { useEffect } from "react";
 
-// Add these imports
-import { Provider as PaperProvider } from "react-native-paper";
+import {
+  MD3LightTheme,
+  Provider as PaperProvider,
+} from "react-native-paper";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+
+const theme = {
+  ...MD3LightTheme,
+  colors: {
+    ...MD3LightTheme.colors,
+    background: "#f5f5f5",
+    surface: "#ffffff",
+    text: "#111111",
+    onSurface: "#111111",
+    primary: "#39385b",
+  },
+};
 
 const RootGuard = () => {
   const router = useRouter();
@@ -29,7 +48,7 @@ const RootGuard = () => {
 
 export default function RootLayout() {
   return (
-    <PaperProvider>
+    <PaperProvider theme={theme}>
       <SafeAreaProvider>
         <AuthProvider>
           <RootGuard />

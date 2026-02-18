@@ -1,21 +1,60 @@
 import { StyleSheet } from "react-native";
 
 export const habitStyles = StyleSheet.create({
+  listScreen: {
+    flex: 1,
+    backgroundColor: "#f4f6f8",
+    padding: 16,
+  },
+
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: 16,
+    marginBottom: 20,
+  },
+
+  headerTitle: {
+    fontSize: 24,
+    fontWeight: "800",
+    color: "#111",
   },
 
   emptyText: {
-    marginTop: 24,
+    marginTop: 40,
     textAlign: "center",
-    opacity: 0.7,
+    color: "#666",
+    fontSize: 15,
+  },
+
+  habitCard: {
+    backgroundColor: "#ffffff",
+    borderRadius: 20,
+    padding: 16,
+    marginBottom: 14,
+
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.08,
+    shadowRadius: 12,
+    elevation: 6,
+  },
+
+  habitTitle: {
+    fontSize: 18,
+    fontWeight: "700",
+    color: "#1a1a1a",
+  },
+
+  habitDescription: {
+    marginTop: 6,
+    fontSize: 14,
+    color: "#555",
+    lineHeight: 20,
   },
 
   meta: {
-    marginTop: 8,
+    marginTop: 14,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
@@ -24,82 +63,13 @@ export const habitStyles = StyleSheet.create({
   streak: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 4,
-  },
-  screen: {
-    flex: 1,
-    backgroundColor: "#eef2f3",
+    gap: 6,
   },
 
-  screenContent: {
-    flex: 1,
-    padding: 20,
-    justifyContent: "center",
-    alignItems: "center",
+  metaText: {
+    fontSize: 13,
+    color: "#666",
   },
-
-  appNameText: {
-    fontSize: 32,
-    fontWeight: "bold",
-    marginBottom: 20,
-    textAlign: "center",
-    color: "#39385b",
-    paddingBottom: 70,
-    fontFamily: "cursive",
-  },
-
-  card: {
-    width: "100%",
-    backgroundColor: "#ffffff",
-    padding: 24,
-    borderRadius: 16,
-
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.1,
-    shadowRadius: 10,
-    elevation: 5,
-  },
-
-  cardTitle: {
-    textAlign: "center",
-    marginBottom: 16,
-    fontWeight: "900",
-    color: "#1a1a1a",
-    fontSize: 26,
-  },
-
-  textField: {
-    marginBottom: 16,
-    backgroundColor: "#ffffff",
-  },
-
-  primaryButton: {
-    marginTop: 12,
-    paddingVertical: 4,
-    borderRadius: 8,
-    backgroundColor: "#39385b",
-  },
-
-  textToggle: {
-    marginTop: 16,
-  },
-
-  listScreen: {
-    flex: 1,
-    padding: 16,
-    backgroundColor: "#f5f5f5",
-  },
-
-  frequencyBlock: {
-    marginBottom: 24,
-  },
-
-  segmentedControl: {
-    marginBottom: 24,
-  },
-
-  fabButton: {},
 });
 
 export const styles = StyleSheet.create({
@@ -172,5 +142,41 @@ export const styles = StyleSheet.create({
   SegmentedButtons: {
     marginBottom: 24,
   },
-  addButton: {},
+
+  addScreen: {
+    flex: 1,
+    backgroundColor: "#f4f6f8",
+    padding: 16,
+  },
+
+  addCard: {
+    backgroundColor: "#ffffff",
+    borderRadius: 20,
+    padding: 20,
+    marginTop: 20,
+
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.08,
+    shadowRadius: 12,
+    elevation: 6,
+  },
+
+  addTitle: {
+    fontSize: 22,
+    fontWeight: "800",
+    color: "#111",
+    marginBottom: 16,
+    textAlign: "center",
+  },
+
+  addButtonWrapper: {
+    padding: 16,
+  },
+
+  addButton: {
+    borderRadius: 12,
+    paddingVertical: 6,
+    backgroundColor: "#39385b",
+  },
 });
