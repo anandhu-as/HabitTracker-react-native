@@ -16,99 +16,99 @@ const FREQUENCIES = ["daily", "weekly", "monthly"] as const;
 type Frequency = (typeof FREQUENCIES)[number];
 
 const AddHabitScreen = () => {
-  const { user } = useAuth();
-  const router = useRouter();
-  const theme = useTheme();
+    const { user } = useAuth();
+    const router = useRouter();
+    const theme = useTheme();
 
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [frequency, setFrequency] = useState<Frequency>("daily");
-  const [error, setError] = useState("");
+    const [title, setTitle] = useState("");
+    const [description, setDescription] = useState("");
+    const [frequency, setFrequency] = useState<Frequency>("daily");
+    const [error, setError] = useState("");
 
-  const handleSubmit = async () => {
-    if (!user) return;
+    const handleSubmit = async () => {
+        if (!user) return;
 
-    try {
-      setError("");
+        try {
+            setError("");
 
-      await databases.createDocument(
-        DATABASE_ID,
-        HABITS_COLLECTION_ID,
-        ID.unique(),
-        {
-          user_id: user.$id,
-          title,
-          description,
-          frequency,
-          streak_count: 0,
-          last_completed: new Date().toISOString(),
-          created_at: new Date().toISOString(),
+            await databases.createDocument(
+                DATABASE_ID,
+                HABITS_COLLECTION_ID,
+                ID.unique(),
+                {
+                    user_id: user.$id,
+                    title,
+                    description,
+                    frequency,
+                    streak_count: 0,
+                    last_completed: new Date().toISOString(),
+                    created_at: new Date().toISOString(),
+                }
+            );
+
+            router.back();
+        } catch (e: any) {
+            setError(e?.message || "Something went wrong");
         }
-      );
+    };
 
-      router.back();
-    } catch (e: any) {
-      setError(e?.message || "Something went wrong");
-    }
-  };
+    return (
+        <View style={styles.addScreen}>
+            <View style={styles.addCard}>
+                <Text style={styles.addTitle}>Add New Habit</Text>
 
-  return (
-    <View style={styles.addScreen}>
-      <View style={styles.addCard}>
-        <Text style={styles.addTitle}>Add New Habit</Text>
+                <TextInput
+                    label="Title"
+                    mode="outlined"
+                    value={title}
+                    onChangeText={setTitle}
+                    style={styles.input}
+                    error={!!error}
+                />
 
-        <TextInput
-          label="Title"
-          mode="outlined"
-          value={title}
-          onChangeText={setTitle}
-          style={styles.input}
-          error={!!error}
-        />
+                <TextInput
+                    label="Description"
+                    mode="outlined"
+                    value={description}
+                    multiline
+                    numberOfLines={3}
+                    onChangeText={setDescription}
+                    style={styles.input}
+                    error={!!error}
+                />
 
-        <TextInput
-          label="Description"
-          mode="outlined"
-          value={description}
-          multiline
-          numberOfLines={3}
-          onChangeText={setDescription}
-          style={styles.input}
-          error={!!error}
-        />
+                {error ? (
+                    <Text style={{ color: theme.colors.error, marginBottom: 8 }}>
+                        {error}
+                    </Text>
+                ) : null}
 
-        {error ? (
-          <Text style={{ color: theme.colors.error, marginBottom: 8 }}>
-            {error}
-          </Text>
-        ) : null}
+                <View style={styles.frequencyContainer}>
+                    <SegmentedButtons
+                        value={frequency}
+                        onValueChange={(value) => {
+                            if (value) setFrequency(value as Frequency);
+                        }}
+                        buttons={FREQUENCIES.map((freq) => ({
+                            value: freq,
+                            label: freq.charAt(0).toUpperCase() + freq.slice(1),
+                        }))}
+                    />
+                </View>
+            </View>
 
-        <View style={styles.frequencyContainer}>
-          <SegmentedButtons
-            value={frequency}
-            onValueChange={(value) => {
-              if (value) setFrequency(value as Frequency);
-            }}
-            buttons={FREQUENCIES.map((freq) => ({
-              value: freq,
-              label: freq.charAt(0).toUpperCase() + freq.slice(1),
-            }))}
-          />
+            <View style={styles.addButtonWrapper}>
+                <Button
+                    mode="contained"
+                    onPress={handleSubmit}
+                    disabled={!title || !description}
+                    style={styles.addButton}
+                >
+                    Add Habit
+                </Button>
+            </View>
         </View>
-      </View>
-
-      <View style={styles.addButtonWrapper}>
-        <Button
-          mode="contained"
-          onPress={handleSubmit}
-          disabled={!title || !description}
-          style={styles.addButton}
-        >
-          Add Habit
-        </Button>
-      </View>
-    </View>
-  );
+    );
 };
 
 export default AddHabitScreen;
